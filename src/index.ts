@@ -177,11 +177,11 @@ function vitePluginWasmPack(
     },
 
     buildEnd() {
-      // copy xxx.wasm files to /assets/xxx.wasm
+      // copy xxx.wasm files to /xxx.wasm — we're packaging in lib mode
       wasmMap.forEach((crate, fileName) => {
         this.emitFile({
           type: 'asset',
-          fileName: `assets/${fileName}`,
+          fileName,
           source: fs.readFileSync(crate.path)
         });
       });
